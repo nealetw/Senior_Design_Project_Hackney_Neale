@@ -2,9 +2,9 @@
 
 ## Daniel
 1. Research GANs
-2. Reasearch image processing
+2. Research image processing
 3. Implement image processing and converting image into usable data
-4. Impliment a generator model
+4. Implement a generator model
 5. Test efficacy of the generator model output
 
 
@@ -14,4 +14,4 @@
 3. Investigate other feasible resources to train GANs effectively
 4. Research Neural Networks
 5. Impliment a discriminator model
-6. Refine training and classfication algorithm
+6. Refine training and classification algorithm
