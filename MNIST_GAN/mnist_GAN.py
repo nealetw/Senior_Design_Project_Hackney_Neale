@@ -8,6 +8,7 @@ import os
 import PIL
 from tensorflow.keras import layers
 import time
+import IPython
 
 from IPython import display
 
@@ -132,7 +133,6 @@ def train(dataset, epochs):
       train_step(image_batch)
 
     # Produce images for the GIF as you go
-    display.clear_output(wait=True)
     generate_and_save_images(generator,
                              epoch + 1,
                              seed)
@@ -144,7 +144,6 @@ def train(dataset, epochs):
     print ('Time for epoch {} is {} sec'.format(epoch + 1, time.time()-start))
 
   # Generate after the final epoch
-  display.clear_output(wait=True)
   generate_and_save_images(generator,
                            epochs,
                            seed)
@@ -162,17 +161,12 @@ def generate_and_save_images(model, epoch, test_input):
       plt.axis('off')
 
   plt.savefig('image_at_epoch_{:04d}.png'.format(epoch))
-  plt.show()
 
 train(train_dataset, EPOCHS)
 
 checkpoint.restore(tf.train.latest_checkpoint(checkpoint_dir))
 
 # Display a single image using the epoch number
-def display_image(epoch_no):
-  return PIL.Image.open('image_at_epoch_{:04d}.png'.format(epoch_no))
-
-display_image(EPOCHS)
 
 anim_file = 'dcgan.gif'
 
