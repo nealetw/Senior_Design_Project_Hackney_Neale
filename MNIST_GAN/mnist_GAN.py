@@ -5,12 +5,8 @@ import imageio
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import PIL
 from tensorflow.keras import layers
 import time
-import IPython
-
-from IPython import display
 
 (train_images, train_labels), (_, _) = tf.keras.datasets.mnist.load_data()
 
@@ -24,24 +20,29 @@ BATCH_SIZE = 256
 train_dataset = tf.data.Dataset.from_tensor_slices(train_images).shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
 
 def make_generator_model():
-    model = tf.keras.Sequential()
-    model.add(layers.Dense(7*7*256, use_bias=False, input_shape=(100,)))
-    model.add(layers.BatchNormalization())
-    model.add(layers.LeakyReLU())
+    model = tf.keras.Sequential() # makes the model with 1 input and 1 output
+    model.add(layers.Dense(7*7*256, use_bias=False, input_shape=(100,))) # makes a dense layer with 100 inputs, in 1 dimension, and 7*7*256 outputs
+    model.add(layers.BatchNormalization()) # layer to normalize data, making it between -1 and 1
+    model.add(layers.LeakyReLU()) # layer that takes in data, and if data is positive, output data, if negative, output zero
+                                  # leaky then means if negative, output a negative value close to zero instead of zero, this is to make sure it doesn't get caught on a value because of a zero value
 
-    model.add(layers.Reshape((7, 7, 256)))
+    model.add(layers.Reshape((7, 7, 256))) # changes the 7*7*256 outputs to be in 3d space, 7x7x256
     assert model.output_shape == (None, 7, 7, 256)  # Note: None is the batch size
 
+    # Sets a 5x5 window to convolute the outputs of the previous layer, then strides by 1, to output with dimension of 7x7x128 ?
     model.add(layers.Conv2DTranspose(128, (5, 5), strides=(1, 1), padding='same', use_bias=False))
     assert model.output_shape == (None, 7, 7, 128)
-    model.add(layers.BatchNormalization())
+    model.add(layers.BatchNormalization()) # then normalize and leakyReLU again
     model.add(layers.LeakyReLU())
 
+    # kernal size of 5,5 with stride of 2,2 may not be optimal
+    # its good to have a a kernal size divisible by the stride size https://towardsdatascience.com/transposed-convolution-demystified-84ca81b4baba
     model.add(layers.Conv2DTranspose(64, (5, 5), strides=(2, 2), padding='same', use_bias=False))
     assert model.output_shape == (None, 14, 14, 64)
     model.add(layers.BatchNormalization())
     model.add(layers.LeakyReLU())
 
+    # activation is tanh to not squash out the negatives thats we've been keeping through leakyReLU
     model.add(layers.Conv2DTranspose(1, (5, 5), strides=(2, 2), padding='same', use_bias=False, activation='tanh'))
     assert model.output_shape == (None, 28, 28, 1)
 
@@ -52,21 +53,22 @@ generator = make_generator_model()
 noise = tf.random.normal([1, 100])
 generated_image = generator(noise, training=False)
 
-plt.imshow(generated_image[0, :, :, 0], cmap='gray')
+plt.imshow(generated_image[0, :, :, 0], cmap='blue')
 
 def make_discriminator_model():
     model = tf.keras.Sequential()
-    model.add(layers.Conv2D(64, (5, 5), strides=(2, 2), padding='same',
-                                     input_shape=[28, 28, 1]))
+    model.add(layers.Conv2D(64, (5, 5), strides=(2, 2), padding='same', input_shape=[28, 28, 1]))
+    # 28x28x1 is image size, no color. Convoluting to size of 64
     model.add(layers.LeakyReLU())
-    model.add(layers.Dropout(0.3))
+    model.add(layers.Dropout(0.3)) # randomly set values to zero, exagerate non-dropped values by 1/(1-.3)
+    # dropout reduces overfitting and improves generalization error for small sample sizes
 
     model.add(layers.Conv2D(128, (5, 5), strides=(2, 2), padding='same'))
     model.add(layers.LeakyReLU())
     model.add(layers.Dropout(0.3))
 
     model.add(layers.Flatten())
-    model.add(layers.Dense(1))
+    model.add(layers.Dense(1)) # outputs bool classification of the image
 
     return model
 
@@ -96,7 +98,7 @@ checkpoint = tf.train.Checkpoint(generator_optimizer=generator_optimizer,
                                  generator=generator,
                                  discriminator=discriminator)
 
-EPOCHS = 50
+EPOCHS = 220
 noise_dim = 100
 num_examples_to_generate = 16
 
