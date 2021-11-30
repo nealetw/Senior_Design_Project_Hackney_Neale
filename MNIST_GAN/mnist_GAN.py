@@ -37,7 +37,7 @@ def make_generator_model():
 
     # kernal size of 5,5 with stride of 2,2 may not be optimal
     # its good to have a a kernal size divisible by the stride size https://towardsdatascience.com/transposed-convolution-demystified-84ca81b4baba
-    model.add(layers.Conv2DTranspose(64, (5, 5), strides=(2, 2), padding='same', use_bias=False))
+    model.add(layers.Conv2DTranspose(64, (8, 8), strides=(2, 2), padding='same', use_bias=False))
     assert model.output_shape == (None, 14, 14, 64)
     model.add(layers.BatchNormalization())
     model.add(layers.LeakyReLU())
@@ -53,7 +53,7 @@ generator = make_generator_model()
 noise = tf.random.normal([1, 100])
 generated_image = generator(noise, training=False)
 
-plt.imshow(generated_image[0, :, :, 0], cmap='blue')
+plt.imshow(generated_image[0, :, :, 0], cmap='Blues')
 
 def make_discriminator_model():
     model = tf.keras.Sequential()
@@ -98,7 +98,7 @@ checkpoint = tf.train.Checkpoint(generator_optimizer=generator_optimizer,
                                  generator=generator,
                                  discriminator=discriminator)
 
-EPOCHS = 220
+EPOCHS = 100
 noise_dim = 100
 num_examples_to_generate = 16
 
@@ -159,10 +159,31 @@ def generate_and_save_images(model, epoch, test_input):
 
   for i in range(predictions.shape[0]):
       plt.subplot(4, 4, i+1)
+      plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5, cmap='Blues')
+      plt.axis('off')
+
+  plt.savefig('image_at_epoch_{:04d}_blue.png'.format(epoch))
+  
+  for i in range(predictions.shape[0]):
+      plt.subplot(4, 4, i+1)
+      plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5, cmap='Reds')
+      plt.axis('off')
+
+  plt.savefig('image_at_epoch_{:04d}_red.png'.format(epoch))
+  
+  for i in range(predictions.shape[0]):
+      plt.subplot(4, 4, i+1)
       plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5, cmap='gray')
       plt.axis('off')
 
-  plt.savefig('image_at_epoch_{:04d}.png'.format(epoch))
+  plt.savefig('image_at_epoch_{:04d}_gray.png'.format(epoch))
+  
+  for i in range(predictions.shape[0]):
+      plt.subplot(4, 4, i+1)
+      plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5, cmap='Purples')
+      plt.axis('off')
+
+  plt.savefig('image_at_epoch_{:04d}_purple.png'.format(epoch))
 
 train(train_dataset, EPOCHS)
 
