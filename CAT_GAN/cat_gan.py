@@ -2,6 +2,8 @@ import tensorflow as tf
 
 import glob
 import imageio
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -10,6 +12,9 @@ from tensorflow.keras import layers
 import time
 
 EPOCHS = 100
+
+gpus = tf.config.experimental.list_physical_devices('GPU')
+tf.config.experimental.set_memory_growth(gpus[0], True)
 
 builder = tfds.ImageFolder("./catimages/")
 ds = builder.as_dataset(
@@ -156,23 +161,21 @@ def train_step(images):
     discriminator_optimizer.apply_gradients(zip(gradients_of_discriminator, discriminator.trainable_variables))
 
 def train(dataset, epochs):
-  print('Starting training at', time.asctime(time.localtime(time.time())))
+  #print('Starting training at', time.asctime(time.localtime(time.time())))
   for epoch in range(epochs):
     start = time.time()
 
     for image_batch in dataset:
       train_step(image_batch)
 
-    # Produce images for the GIF as you go
-    generate_and_save_images(generator,
-                             epoch + 1,
-                             seed)
+    # Produce images for the GIF as we train
+    generate_and_save_images(generator, epoch + 1, seed)
 
-    # Save the model every 15 epochs
-    if (epoch + 1) % 15 == 0:
+    # Save the model every 20 epochs
+    if (epoch + 1) % 20 == 0:
       checkpoint.save(file_prefix = checkpoint_prefix)
 
-    print ('Time for epoch {} is {} sec'.format(epoch + 1, time.time()-start))
+    print ('Time for epoch {} is {} sec'.format(epoch + 1, time.time() - start))
 
   # Generate after the final epoch
   generate_and_save_images(generator,
@@ -188,10 +191,12 @@ def generate_and_save_images(model, epoch, test_input):
   
   for i in range(predictions.shape[0]):
       plt.subplot(4, 4, i+1)
-      plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5, cmap='gray')
+      plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5)
       plt.axis('off')
 
   plt.savefig('image_at_epoch_{:04d}_gray.png'.format(epoch))
+  plt.close('all')
+  fig.clf()
 
 train(train_dataset, EPOCHS)
 
@@ -199,7 +204,7 @@ checkpoint.restore(tf.train.latest_checkpoint(checkpoint_dir))
 
 # Display a single image using the epoch number
 
-anim_file = 'dcgan.gif'
+anim_file = 'catgan.gif'
 
 with imageio.get_writer(anim_file, mode='I') as writer:
   filenames = glob.glob('image*.png')
