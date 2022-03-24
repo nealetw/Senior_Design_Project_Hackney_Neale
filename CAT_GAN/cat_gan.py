@@ -87,12 +87,11 @@ generator = make_generator_model()
 noise = tf.random.normal([1, 100])
 generated_image = generator(noise, training=False)
 
-plt.imshow(generated_image[0, :, :, 0], cmap='Blues')
+plt.imshow(generated_image[0, :, :, 0])
 
 def make_discriminator_model():
     model = tf.keras.Sequential()
     model.add(layers.Conv2D(64, (5, 5), strides=(2, 2), padding='same', input_shape=[128, 128, 3]))
-    # 28x28x1 is image size, no color. Convoluting to size of 64
     model.add(layers.LeakyReLU())
     model.add(layers.Dropout(0.3)) # randomly set values to zero, exagerate non-dropped values by 1/(1-.3)
     # dropout reduces overfitting and improves generalization error for small sample sizes
@@ -191,10 +190,10 @@ def generate_and_save_images(model, epoch, test_input):
   
   for i in range(predictions.shape[0]):
       plt.subplot(4, 4, i+1)
-      plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5)
+      plt.imshow(predictions[i, :, :, :])
       plt.axis('off')
 
-  plt.savefig('image_at_epoch_{:04d}_gray.png'.format(epoch))
+  plt.savefig('image_at_epoch_{:04d}.png'.format(epoch))
   plt.close('all')
   fig.clf()
 
