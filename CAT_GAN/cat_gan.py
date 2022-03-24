@@ -190,7 +190,7 @@ def generate_and_save_images(model, epoch, test_input):
   
   for i in range(predictions.shape[0]):
       plt.subplot(4, 4, i+1)
-      plt.imshow(predictions[i, :, :, :])
+      plt.imshow(predictions[i, :, :, :] / 2 + 0.5) # Normalizing the input from [-1, 1] to [0, 1]
       plt.axis('off')
 
   plt.savefig('image_at_epoch_{:04d}.png'.format(epoch))
