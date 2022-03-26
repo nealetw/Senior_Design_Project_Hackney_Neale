@@ -17,7 +17,7 @@ python cat_gan.py
 
 and the program will start running.
 
-This program can take a long time to run, varying on the power of the computer it is run on. As it runs, the images it outputs will be in "/MNIST_GAN/TrainingImages"
+This program can take a long time to run, varying on the power of the computer it is run on. As it runs, the images it outputs will be in "/cat_gan/TrainingImages"
 
 ---
 
