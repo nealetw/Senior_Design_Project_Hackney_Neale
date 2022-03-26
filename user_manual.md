@@ -12,7 +12,7 @@ If you want to use this project, make sure you have the following installed:
 Download this project folder and open the python file /MNIST_GAN/mnist_GAN.py, or compile it by entering into your terminal,
 
 ```
-python mnist_GAN.py
+python cat_gan.py
 ```
 
 and the program will start running.
