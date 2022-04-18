@@ -24,6 +24,8 @@ Our project utilizes neural networks to produce data that can trick users into t
 
 ### [PPT Slideshow](./ShenaniGANs_Powerpoint.pdf)
 
+### [Expo Poster](./Poster.pdf)
+
 ### Self-Assessment Essays
 
 - [Daniel Hackney](essays/dhackney-Individual-Capstone-Assessment.md)
