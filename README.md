@@ -34,6 +34,11 @@ Our project utilizes neural networks to produce data that can trick users into t
 - [Daniel Hackney](./dhackney-Professional-Biography.md)
 - [Tim Neale](./biography_Neale.md)
 
+### Final Self-Assessments
+
+- [Daniel Hackney](essays/dhackney-Individual-Capstone-Assessment.md)
+- [Tim Neale](essays/Final_Self_Assessment_Neale.pdf)
+
 ### Budget
 
 There have been no monetary expenses
