@@ -15,7 +15,9 @@ Download this project folder and open the python file /MNIST_GAN/mnist_GAN.py, o
 python cat_gan.py
 ```
 
-and the program will start running. You should verify that you have images (and properly formatted to be 128x128) in the directory CAT_GAN/catimages/test/cat/ and CAT_GAN/catimages/train/cat/. The images used were derived from [this dataset from Kaggle](https://www.kaggle.com/datasets/andrewmvd/animal-faces), and a copy of the final dataset used [can be downloaded here](https://drive.google.com/file/d/14gdn4IYF_e6sjUpqKFrYRyUs3lE6CzF2/view?usp=sharing)
+and the program will start running. You should verify that you have images (and properly formatted to be 128x128) in the directory CAT_GAN/catimages/test/cat/ and CAT_GAN/catimages/train/cat/. The direcorty structure can be seen here: ![image](https://user-images.githubusercontent.com/38301800/163854998-f48b9547-802b-404e-9701-62f238f49bbe.png)
+
+The images used were derived from [this dataset from Kaggle](https://www.kaggle.com/datasets/andrewmvd/animal-faces), and a copy of the final dataset used [can be downloaded here](https://drive.google.com/file/d/14gdn4IYF_e6sjUpqKFrYRyUs3lE6CzF2/view?usp=sharing)
 
 This program can take a long time to run, varying on the power of the computer it is run on. As it runs, the images it outputs will be in "/cat_gan/TrainingImages"
 
