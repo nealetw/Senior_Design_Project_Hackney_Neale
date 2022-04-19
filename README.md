@@ -6,7 +6,7 @@ Project Advisor: _Badri Vellambi_
 
 ## Project Abstract
 
-Our project utilizes neural networks to produce data that can trick users into thinking the data is real rather than generated. With a Generative Adversarial Network (GAN), we'll be able to input existing images and begin training a generator and discriminator model. The generator will seek out patterns to generate new images, while the discriminator will improve whether images are real or fake.
+Our project utilizes neural networks to produce cat faces that can trick users into thinking the data is real rather than generated. With a Generative Adversarial Network (GAN), we are able to input existing cat images and begin training a generator and discriminator model. The generator will seek out patterns to generate new images, while the discriminator will improve whether images are real or fake. Loss functions are also plotted.
 
 ## Table of Contents
 
