@@ -15,7 +15,7 @@ Download this project folder and open the python file /MNIST_GAN/mnist_GAN.py, o
 python cat_gan.py
 ```
 
-and the program will start running. You should verify that you have images (and properly formatted to be 128x128) in the directory CAT_GAN/catimages/test/cat/ and CAT_GAN/catimages/train/cat/. The direcorty structure can be seen here: ![image](https://user-images.githubusercontent.com/38301800/163854998-f48b9547-802b-404e-9701-62f238f49bbe.png)
+and the program will start running. You should verify that you have images (and properly formatted to be 128x128) in the directory CAT_GAN/catimages/test/cat/ and CAT_GAN/catimages/train/cat/. The directory structure can be seen here: ![image](https://user-images.githubusercontent.com/38301800/163854998-f48b9547-802b-404e-9701-62f238f49bbe.png)
 
 The images used were derived from [this dataset from Kaggle](https://www.kaggle.com/datasets/andrewmvd/animal-faces), and a copy of the final dataset used [can be downloaded here](https://drive.google.com/file/d/14gdn4IYF_e6sjUpqKFrYRyUs3lE6CzF2/view?usp=sharing)
 
@@ -38,4 +38,4 @@ _Can I give the GAN more of my own pictures to train from?_
 
 _Can I use a different set of images to get a different kind of output?_
 
-> In theory, yes you could, but it needs to be in the same resolution and format of the default images the GAN is configured to take, otherwise it will halt or output garbage. We would not recommend trying to, but you could reconfigure it to take different images.
+> Yes you could, but it needs to be in the same resolution and format of the default images the GAN is configured to take, otherwise it will halt or output garbage. We would not recommend trying to, but you could reconfigure it to take different images.
