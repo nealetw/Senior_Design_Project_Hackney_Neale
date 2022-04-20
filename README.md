@@ -50,10 +50,10 @@ Daniel Hackney
       - TIme spent communicating with OSC staff, testing/training, coding loss function plotting and RGB output, documentation, and research.
 
 Tim Neale
-- Fall:
-     - 
-- Spring: 
-     - 
+- Fall: ## hours
+     - TBA
+- Spring: ## hours
+     - TBA
 
 ### Budget
 
