@@ -14,7 +14,7 @@ Our project utilizes neural networks to produce cat faces that can trick users i
 
 There is no user interface for this project. The output is saved to files as the program is executed.
 
-### [Test Plans and Results](./Senior Design Test Plan.pdf)
+### [Test Plans and Results](./Senior%20Design%20Test%20Plan.pdf./Senior Design Test Plan.pdf)
 
 ### [User Manual](./user_manual.md)
 
