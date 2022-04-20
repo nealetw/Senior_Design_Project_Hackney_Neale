@@ -53,6 +53,7 @@ Daniel Hackney
  - Fall: 40 hours
       - Time spent researching GANs, reading articles, meeting with project advisor, project documentation, and finding datasets.
  - Spring: 50 hours
+      - Time spent on helping code generator and discriminator models and helping to format images into latent space representation.
       - TIme spent communicating with OSC staff, testing/training, coding loss function plotting and RGB output, documentation, and research.
 
 Tim Neale
