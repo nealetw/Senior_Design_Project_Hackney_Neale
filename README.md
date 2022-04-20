@@ -41,6 +41,20 @@ Our project utilizes neural networks to produce cat faces that can trick users i
 - [Daniel Hackney](essays/Final_Self_Assessment_Hackney.pdf)
 - [Tim Neale](essays/Final_Self_Assessment_Neale.pdf)
 
+### Summary of Hours
+
+Daniel Hackney
+ - Fall: 40 hours
+      - Time spent researching GANs, reading articles, meeting with project advisor, project documentation, and finding datasets.
+ - Spring: 50 hours
+      - TIme spent communicating with OSC staff, testing/training, coding loss function plotting and RGB output, documentation, and research.
+
+Tim Neale
+- Fall:
+     - 
+- Spring: 
+     - 
+
 ### Budget
 
 There have been no monetary expenses
