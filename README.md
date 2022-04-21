@@ -57,10 +57,11 @@ Daniel Hackney
       - TIme spent communicating with OSC staff, testing/training, coding loss function plotting and RGB output, documentation, and research.
 
 Tim Neale
-- Fall: ## hours
-     - TBA
-- Spring: ## hours
-     - TBA
+- Fall: 40 hours
+     - Time spent researching GANs and library documentations, meeting with project advisor, finding datasets, and reading research papers.
+- Spring: 45 hours
+     - Time spent helping code generator and discriminator models, and formatting local dataset to fit with desired model.
+     - Configuring shape of neural network shape to take progressively larger images, and support color images as desired.
 
 ### Budget
 
